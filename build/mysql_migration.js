@@ -72,7 +72,7 @@ var logger_1 = require("./util/logger");
 var chalk_1 = __importDefault(require("chalk"));
 var constants_1 = require("./util/constants");
 var filepath = constants_1.exportFilepath;
-// TODO: POOL 사용을 고려해봐야 할 듯
+// TODO: POOL 사용을 고려
 var connection = null;
 var tableCreated = false;
 var migration = function (_a, exportTable, isDelete, isForceUpdate) {

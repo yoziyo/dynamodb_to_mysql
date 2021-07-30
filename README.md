@@ -2,13 +2,15 @@
 
 ## Description
 
-dynamodb에 단순 scan => csv 변환 => mysql insert 하는 툴 입니다.
+dynamodb scan -> csv 변환 -> mysql insert 하는 툴 입니다.
 
 순수 nosql => rdb로의 마이그레이션을 위해서 만들어 져서 모든 데이터는 mysql에서 가공한다는 가정으로 만들어 졌습니다.
 
 그 예로 모든데이터는 TEXT로 insert 되며, nosql 데이터에 object나 array가 있을수 있으므로 그에 대한 후처리 진행 후 TEXT로 삽입하며, int형도 따로 분리하지 않고 모두 TEXT 타입으로 삽입 됩니다.
 
 빈 데이터는 null로 들어가므로 필요시 mysql 에서 컬럼의 타입을 변경 후, 재가공해서 사용하면 됩니다.
+
+mysql은 load data를 사용하므로, 해당 기능이 제공되는 환경이여야 합니다.
 
 ## How to
 
