@@ -24,9 +24,9 @@ const commander = (config?: Config) => {
   program
     .command('init')
     .description('설정 파일을 생성합니다.')
-    .action(async () => {
+    .action(() => {
       try {
-        await generatorConfigure();
+        generatorConfigure();
         printLog(
           "설정파일 생성 완료. migration_config.json 파일을 수정한 뒤 '--help' 를 입력하여 진행 하여 주세요!",
         );

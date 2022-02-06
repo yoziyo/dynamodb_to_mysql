@@ -13,13 +13,9 @@ const defaultConfig = {
   MYSQL_USER: '',
 };
 
-const generatorConfigure = async (): Promise<void> => {
+const generatorConfigure = (): void => {
   rmSync(filepath, { recursive: true, force: true });
-  return await writeFileSync(
-    `${filepath}`,
-    JSON.stringify(defaultConfig),
-    'utf8',
-  );
+  return writeFileSync(`${filepath}`, JSON.stringify(defaultConfig), 'utf8');
 };
 
 export = generatorConfigure;

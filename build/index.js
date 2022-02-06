@@ -52,25 +52,15 @@ var commander = function (config) {
     program
         .command('init')
         .description('설정 파일을 생성합니다.')
-        .action(function () { return __awaiter(void 0, void 0, void 0, function () {
-        var err_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, config_1.default()];
-                case 1:
-                    _a.sent();
-                    logger_1.printLog("설정파일 생성 완료. migration_config.json 파일을 수정한 뒤 '--help' 를 입력하여 진행 하여 주세요!");
-                    return [3 /*break*/, 3];
-                case 2:
-                    err_1 = _a.sent();
-                    logger_1.printError("\uC124\uC815\uD30C\uC77C \uC0DD\uC131 \uC2E4\uD328 " + err_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    }); });
+        .action(function () {
+        try {
+            config_1.default();
+            logger_1.printLog("설정파일 생성 완료. migration_config.json 파일을 수정한 뒤 '--help' 를 입력하여 진행 하여 주세요!");
+        }
+        catch (err) {
+            logger_1.printError("\uC124\uC815\uD30C\uC77C \uC0DD\uC131 \uC2E4\uD328 " + err);
+        }
+    });
     program
         .command('export')
         .description('dynamodb 데이터를 json 으로 추출 합니다.')
