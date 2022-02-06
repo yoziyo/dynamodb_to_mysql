@@ -38,7 +38,7 @@ const jsonToCsv = async (
   isDelete: boolean,
 ) => {
   return new Promise<string>(async (resolve, reject) => {
-    const jsonFileData = await readFileSync(
+    const jsonFileData = readFileSync(
       `${filepath}${table}/${filename}`,
       'utf-8',
     );

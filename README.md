@@ -29,9 +29,3 @@ node build/index.js migration -t <TABLE>
 각각 필요에 따라 명령어를 사용하여 줍니다.
 
 이때 추가 옵션 및 상세한 설명은 `--help` 에서 확인 가능 합니다.
-
-## TODOS
-- error throw 
-- npm package
-- 코드 리팩토링 (분리)
-- 전체 로직 자동 옵션
