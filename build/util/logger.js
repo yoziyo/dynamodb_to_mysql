@@ -9,7 +9,7 @@ require("dayjs/locale/ko");
 var chalk_1 = __importDefault(require("chalk"));
 var getTime = function () { return dayjs_1.default().locale('ko').format('YYYY-MM-DD HH:mm:ss'); };
 var printLog = function (log) {
-    console.info(chalk_1.default.bgRedBright("" + getTime()), log);
+    console.info(chalk_1.default.bgBlackBright("" + getTime()), log);
 };
 exports.printLog = printLog;
 var printError = function (log) {

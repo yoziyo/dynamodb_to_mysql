@@ -20,7 +20,7 @@ export type Config = {
 
 const program = new Command();
 
-const commander = (config: Config) => {
+const commander = (config?: Config) => {
   program
     .command('init')
     .description('설정 파일을 생성합니다.')
@@ -52,7 +52,7 @@ const commander = (config: Config) => {
     )
     .option('-d, --delete', 'csv 파일 생성 후 json 파일을 모두 삭제 합니다.')
     .action((options: { table: string; delete?: boolean }) => {
-      converter(options.table, options.delete ? true : false);
+      converter(options.table, options.delete);
     });
 
   program
@@ -64,26 +64,27 @@ const commander = (config: Config) => {
     )
     .option('-f, --force', '생성된 테이블이 있다면 제거하고 진행합니다.')
     .option('-d, --delete', 'migration 후 데이터를 삭제합니다.')
-    .action((options: { table: string; delete?: boolean; force?: boolean }) => {
-      migration(
-        config,
-        options.table,
-        options.delete ? true : false,
-        options.force ? true : false,
-      );
-    });
+    .action(
+      async (options: { table: string; delete?: boolean; force?: boolean }) => {
+        await migration(config, options.table, options.delete, options.force);
+      },
+    );
 
   program.parse(process.argv);
 };
 
 stat(configFilepath, async (err) => {
-  if (err) {
-    return printError(
-      `설정파일이 존재하지 않습니다. init 명령어를 먼저 실행해 주세요.`,
-    );
+  if (process.argv[2] !== 'init') {
+    if (err) {
+      return printError(
+        `설정파일이 존재하지 않습니다. init 명령어를 먼저 실행해 주세요.`,
+      );
+    }
+
+    const config = readFileSync(configFilepath, 'utf-8');
+
+    commander(JSON.parse(config));
+  } else {
+    commander();
   }
-
-  const config = await readFileSync(configFilepath, 'utf-8');
-
-  commander(JSON.parse(config));
 });

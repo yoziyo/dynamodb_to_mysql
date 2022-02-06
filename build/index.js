@@ -84,7 +84,7 @@ var commander = function (config) {
         .requiredOption('-t, --table <table>', '변환할 dynamodb table을 입력합니다. (export/{table})')
         .option('-d, --delete', 'csv 파일 생성 후 json 파일을 모두 삭제 합니다.')
         .action(function (options) {
-        convert_csv_1.default(options.table, options.delete ? true : false);
+        convert_csv_1.default(options.table, options.delete);
     });
     program
         .command('migration')
@@ -92,25 +92,32 @@ var commander = function (config) {
         .requiredOption('-t, --table <table>', '추출 된 dynamodb table을 입력 합니다.')
         .option('-f, --force', '생성된 테이블이 있다면 제거하고 진행합니다.')
         .option('-d, --delete', 'migration 후 데이터를 삭제합니다.')
-        .action(function (options) {
-        mysql_migration_1.default(config, options.table, options.delete ? true : false, options.force ? true : false);
-    });
+        .action(function (options) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, mysql_migration_1.default(config, options.table, options.delete, options.force)];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    }); });
     program.parse(process.argv);
 };
 fs_1.stat(constants_1.configFilepath, function (err) { return __awaiter(void 0, void 0, void 0, function () {
     var config;
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                if (err) {
-                    return [2 /*return*/, logger_1.printError("\uC124\uC815\uD30C\uC77C\uC774 \uC874\uC7AC\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4. init \uBA85\uB839\uC5B4\uB97C \uBA3C\uC800 \uC2E4\uD589\uD574 \uC8FC\uC138\uC694.")];
-                }
-                return [4 /*yield*/, fs_1.readFileSync(constants_1.configFilepath, 'utf-8')];
-            case 1:
-                config = _a.sent();
-                commander(JSON.parse(config));
-                return [2 /*return*/];
+        if (process.argv[2] !== 'init') {
+            if (err) {
+                return [2 /*return*/, logger_1.printError("\uC124\uC815\uD30C\uC77C\uC774 \uC874\uC7AC\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4. init \uBA85\uB839\uC5B4\uB97C \uBA3C\uC800 \uC2E4\uD589\uD574 \uC8FC\uC138\uC694.")];
+            }
+            config = fs_1.readFileSync(constants_1.configFilepath, 'utf-8');
+            commander(JSON.parse(config));
         }
+        else {
+            commander();
+        }
+        return [2 /*return*/];
     });
 }); });
 //# sourceMappingURL=index.js.map

@@ -113,9 +113,8 @@ var jsonToCsv = function (filename, table, isDelete) { return __awaiter(void 0, 
                 var jsonFileData, jsonData, headers, allRows, csv, csvFileName;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, fs_1.readFileSync("" + filepath + table + "/" + filename, 'utf-8')];
-                        case 1:
-                            jsonFileData = _a.sent();
+                        case 0:
+                            jsonFileData = fs_1.readFileSync("" + filepath + table + "/" + filename, 'utf-8');
                             jsonData = JSON.parse(jsonFileData);
                             headers = [];
                             allRows = [];
@@ -140,15 +139,15 @@ var jsonToCsv = function (filename, table, isDelete) { return __awaiter(void 0, 
                             csv = papaparse_1.unparse([headers]) + "\r\n" + allRows.join('\r\n');
                             csvFileName = path_1.default.parse(filename).name + "." + jsonData.length + ".csv";
                             return [4 /*yield*/, fs_1.writeFileSync("" + filepath + table + "/" + csvFileName, csv, 'utf8')];
+                        case 1:
+                            _a.sent();
+                            if (!isDelete) return [3 /*break*/, 3];
+                            return [4 /*yield*/, fs_1.unlinkSync("" + filepath + table + "/" + filename)];
                         case 2:
                             _a.sent();
-                            if (!isDelete) return [3 /*break*/, 4];
-                            return [4 /*yield*/, fs_1.unlinkSync("" + filepath + table + "/" + filename)];
-                        case 3:
-                            _a.sent();
                             logger_1.printLog(filename + " \uC81C\uAC70 \uC644\uB8CC");
-                            _a.label = 4;
-                        case 4:
+                            _a.label = 3;
+                        case 3:
                             resolve(csvFileName + " \uC0DD\uC131 \uC644\uB8CC");
                             return [2 /*return*/];
                     }
