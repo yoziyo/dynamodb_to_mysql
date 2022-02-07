@@ -12,7 +12,7 @@ const program = new Command();
 const commander = (config?: Config) => {
   program
     .command('init')
-    .description('설정 파일을 생성합니다.')
+    .description('설정 파일을 재생성 합니다.')
     .action(() => {
       try {
         generatorConfigure();

@@ -24,7 +24,7 @@ const program = new commander_1.Command();
 const commander = (config) => {
     program
         .command('init')
-        .description('설정 파일을 생성합니다.')
+        .description('설정 파일을 재생성 합니다.')
         .action(() => {
         try {
             config_1.generatorConfigure();
