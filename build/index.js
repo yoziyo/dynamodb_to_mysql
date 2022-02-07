@@ -55,7 +55,7 @@ var commander = function (config) {
         .action(function () {
         try {
             config_1.default();
-            logger_1.printLog("설정파일 생성 완료. migration_config.json 파일을 수정한 뒤 '--help' 를 입력하여 진행 하여 주세요!");
+            logger_1.printLog("설정파일 생성 완료. config.json 파일을 수정한 뒤 '--help' 를 입력하여 진행 하여 주세요!");
         }
         catch (err) {
             logger_1.printError("\uC124\uC815\uD30C\uC77C \uC0DD\uC131 \uC2E4\uD328 " + err);

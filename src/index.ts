@@ -1,22 +1,11 @@
 import { Command } from 'commander';
 import { stat, readFileSync } from 'fs';
-import generatorConfigure from './config';
+import generatorConfigure, { Config } from './config';
 import converter from './convert_csv';
 import getJSON from './dynamodb_to_json';
 import migration from './mysql_migration';
 import { printError, printLog } from './util/logger';
 import { configFilepath } from './util/constants';
-
-export type Config = {
-  AWS_ACCESS_KEY: string;
-  AWS_SECRET_KEY: string;
-  AWS_REGION: string;
-  MYSQL_HOST: string;
-  MYSQL_PORT: string;
-  MYSQL_DATABASE: string;
-  MYSQL_PASSWORD: string;
-  MYSQL_USER: string;
-};
 
 const program = new Command();
 
@@ -28,7 +17,7 @@ const commander = (config?: Config) => {
       try {
         generatorConfigure();
         printLog(
-          "설정파일 생성 완료. migration_config.json 파일을 수정한 뒤 '--help' 를 입력하여 진행 하여 주세요!",
+          "설정파일 생성 완료. config.json 파일을 수정한 뒤 '--help' 를 입력하여 진행 하여 주세요!",
         );
       } catch (err) {
         printError(`설정파일 생성 실패 ${err}`);

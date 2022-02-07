@@ -1,6 +1,7 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = require("fs");
-var filepath = './migration_config.json';
+var constants_1 = require("./util/constants");
 var defaultConfig = {
     AWS_ACCESS_KEY: '',
     AWS_SECRET_KEY: '',
@@ -12,8 +13,8 @@ var defaultConfig = {
     MYSQL_USER: '',
 };
 var generatorConfigure = function () {
-    fs_1.rmSync(filepath, { recursive: true, force: true });
-    return fs_1.writeFileSync("" + filepath, JSON.stringify(defaultConfig), 'utf8');
+    fs_1.rmSync(constants_1.configFilepath, { recursive: true, force: true });
+    fs_1.writeFileSync("" + constants_1.configFilepath, JSON.stringify(defaultConfig), 'utf8');
 };
-module.exports = generatorConfigure;
+exports.default = generatorConfigure;
 //# sourceMappingURL=config.js.map

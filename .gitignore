@@ -259,4 +259,5 @@ fabric.properties
 export
 export*
 migration_config.json
+config.json
 

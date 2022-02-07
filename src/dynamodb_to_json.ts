@@ -2,7 +2,7 @@ import { AWSError, config, DynamoDB } from 'aws-sdk';
 import { DocumentClient } from 'aws-sdk/clients/dynamodb';
 import { rmSync, mkdirSync, writeFile } from 'fs';
 
-import { Config } from './index';
+import { Config } from './config';
 import { exportFilepath } from './util/constants';
 import { printError, printLog } from './util/logger';
 

@@ -2,7 +2,7 @@ import { Connection, createConnection } from 'mysql2/promise';
 import { readdirSync, readFileSync, createReadStream, rmSync } from 'fs';
 import path from 'path';
 
-import { Config } from './index';
+import { Config } from './config';
 import { printLog, printError } from './util/logger';
 
 import chalk from 'chalk';

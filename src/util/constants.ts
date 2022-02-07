@@ -1,4 +1,4 @@
-const configFilepath = './migration_config.json';
+const configFilepath = './config.json';
 const exportFilepath = './export/';
 
 export { exportFilepath, configFilepath };
