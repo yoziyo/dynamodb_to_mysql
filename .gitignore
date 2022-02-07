@@ -256,8 +256,7 @@ fabric.properties
 # https://plugins.jetbrains.com/plugin/12206-codestream
 .idea/codestream.xml
 
-export
-export*
+export/
 migration_config.json
 config.json
 
