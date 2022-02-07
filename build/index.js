@@ -14,12 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const commander_1 = require("commander");
 const fs_1 = require("fs");
-const config_1 = __importDefault(require("./config"));
+const config_1 = require("./config");
 const convert_csv_1 = __importDefault(require("./convert_csv"));
-const dynamodb_to_json_1 = __importDefault(require("./dynamodb_to_json"));
 const mysql_migration_1 = __importDefault(require("./mysql_migration"));
 const logger_1 = require("./util/logger");
 const constants_1 = require("./util/constants");
+const exports_1 = require("./exports");
 const program = new commander_1.Command();
 const commander = (config) => {
     program
@@ -27,7 +27,7 @@ const commander = (config) => {
         .description('설정 파일을 생성합니다.')
         .action(() => {
         try {
-            config_1.default();
+            config_1.generatorConfigure();
             logger_1.printLog("설정파일 생성 완료. config.json 파일을 수정한 뒤 '--help' 를 입력하여 진행 하여 주세요!");
         }
         catch (err) {
@@ -39,7 +39,7 @@ const commander = (config) => {
         .description('dynamodb 데이터를 json 으로 추출 합니다.')
         .requiredOption('-t, --table <table>', 'dynamodb table 이름을 입력합니다.')
         .action((options) => {
-        dynamodb_to_json_1.default(config, options.table);
+        exports_1.exportDynamoDB(config, options.table);
     });
     program
         .command('convert')

@@ -1,11 +1,11 @@
 import { Command } from 'commander';
 import { stat, readFileSync } from 'fs';
-import generatorConfigure, { Config } from './config';
+import { generatorConfigure, Config } from './config';
 import converter from './convert_csv';
-import getJSON from './dynamodb_to_json';
 import migration from './mysql_migration';
 import { printError, printLog } from './util/logger';
 import { configFilepath } from './util/constants';
+import { exportDynamoDB } from './exports';
 
 const program = new Command();
 
@@ -29,7 +29,7 @@ const commander = (config?: Config) => {
     .description('dynamodb 데이터를 json 으로 추출 합니다.')
     .requiredOption('-t, --table <table>', 'dynamodb table 이름을 입력합니다.')
     .action((options: { table: string }) => {
-      getJSON(config, options.table);
+      exportDynamoDB(config, options.table);
     });
 
   program

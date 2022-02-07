@@ -23,9 +23,7 @@ export const defaultConfig: Config = {
   MYSQL_USER: '',
 };
 
-const generatorConfigure = (): void => {
+export const generatorConfigure = (): void => {
   rmSync(configFilepath, { recursive: true, force: true });
   writeFileSync(`${configFilepath}`, JSON.stringify(defaultConfig), 'utf8');
 };
-
-export default generatorConfigure;

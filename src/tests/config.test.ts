@@ -1,4 +1,4 @@
-import generatorConfigure, { defaultConfig } from '../config';
+import { generatorConfigure, defaultConfig } from '../config';
 import { readFileSync } from 'fs';
 import { configFilepath } from '../util/constants';
 

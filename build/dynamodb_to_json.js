@@ -1,4 +1,6 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.exportDynamoDB = void 0;
 const aws_sdk_1 = require("aws-sdk");
 const fs_1 = require("fs");
 const constants_1 = require("./util/constants");
@@ -8,20 +10,6 @@ let client = null;
 const filepath = constants_1.exportFilepath;
 const params = {
     TableName: '',
-};
-const getJSON = ({ AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION }, table) => {
-    params.TableName = table;
-    aws_sdk_1.config.update({
-        accessKeyId: AWS_ACCESS_KEY,
-        secretAccessKey: AWS_SECRET_KEY,
-        region: AWS_REGION,
-    });
-    client = new aws_sdk_1.DynamoDB.DocumentClient();
-    fs_1.rmSync(filepath, { recursive: true, force: true });
-    fs_1.mkdirSync(filepath);
-    fs_1.rmSync(`${filepath}${table}`, { recursive: true, force: true });
-    fs_1.mkdirSync(`${filepath}${table}`);
-    client.scan(params, onScan);
 };
 const onScan = (err, data) => {
     if (err) {
@@ -48,5 +36,19 @@ const onScan = (err, data) => {
         });
     }
 };
-module.exports = getJSON;
+const exportDynamoDB = ({ AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION }, table) => {
+    params.TableName = table;
+    aws_sdk_1.config.update({
+        accessKeyId: AWS_ACCESS_KEY,
+        secretAccessKey: AWS_SECRET_KEY,
+        region: AWS_REGION,
+    });
+    client = new aws_sdk_1.DynamoDB.DocumentClient();
+    fs_1.rmSync(filepath, { recursive: true, force: true });
+    fs_1.mkdirSync(filepath);
+    fs_1.rmSync(`${filepath}${table}`, { recursive: true, force: true });
+    fs_1.mkdirSync(`${filepath}${table}`);
+    client.scan(params, onScan);
+};
+exports.exportDynamoDB = exportDynamoDB;
 //# sourceMappingURL=dynamodb_to_json.js.map
