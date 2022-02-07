@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.configFilepath = exports.exportFilepath = void 0;
-var configFilepath = './config.json';
+const configFilepath = './config.json';
 exports.configFilepath = configFilepath;
-var exportFilepath = './export/';
+const exportFilepath = './export/';
 exports.exportFilepath = exportFilepath;
 //# sourceMappingURL=constants.js.map

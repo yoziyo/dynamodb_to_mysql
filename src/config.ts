@@ -12,7 +12,7 @@ export type Config = {
   MYSQL_USER: string;
 };
 
-const defaultConfig: Config = {
+export const defaultConfig: Config = {
   AWS_ACCESS_KEY: '',
   AWS_SECRET_KEY: '',
   AWS_REGION: '',
